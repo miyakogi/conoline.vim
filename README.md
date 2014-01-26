@@ -1,7 +1,7 @@
 Conoline.vim
 ============
 
-This plugin highlights the line of the cursor, only in the current window. The colors change according to the mode (normal/insert). Colors in each mode can be independently customizable.
+This plugin highlights the line of the cursor, only in the current window. The colors change according to the mode (normal/insert). Colors in each mode are independently customizable.
 
 This plugin is inspired by this post:  
 (http://vimblog.hatenablog.com/entry/vimrc_autocmd)
