@@ -1,0 +1,143 @@
+*conoline.txt* Highlight the line of the cursor, only in the current window.
+
+Author: miyakogi (https://github.com/miyakogi/)
+Repository: https://github.com/miyakogi/conoline.vim
+Version: 0.1 (Last changed: Jan. 26, 2014)
+
+==============================================================================
+CONTENTS						*conoline-contents*
+
+  1. Introduction.................................. |conoline-introduction|
+  2. Commands...................................... |conoline-commands|
+  3. Usage......................................... |conoline-usage|
+  4. Options....................................... |conoline-options|
+  5. Changelog..................................... |conoline-changelog|
+
+==============================================================================
+1. INTRODUCTION						*conoline-introduction*
+
+Highlight the line of the cursor, only in the current window. Colors of the
+cursor line changes according to the current mode (Normal or Insert mode).
+
+This plugin is inspired by: http://vimblog.hatenablog.com/entry/vimrc_autocmd
+
+Features:~
+  - Highlight the line of the cursor in the current window.
+  - Clear the highlight of the cursor line when you leave the window.
+  - Change colors of the cursor line according to the mode (Normal/Insert).
+  - Customizable colors of cursor line, independently in each mode.
+
+==============================================================================
+2. COMMANDS						*conoline-commands*
+
+------------------------------------------------------------------------------
+:ConoLineEnable						*:ConoLineEnable*
+  Enable the highlight of the cursor line in the current window.
+
+:ConoLineDisable					*:ConoLineDisable*
+  Disable the highlight of the cursor line.
+
+:ConoLineToggle						*:ConoLineToggle*
+  Toggle on and off the highlight.
+
+==============================================================================
+3. USAGE						*conoline-options*
+
+Enable manually:
+	Execute `:ConoLineEnable` manually.
+
+Enable automatically:
+	Add the below line in your vimrc and then restart vim. >
+	autocmd VimEnter * ConoLineEnable
+<
+
+==============================================================================
+4. OPTIONS						*conoline-options*
+
+Options ending with `_dark` work only when you are using dark colorscheme
+(e.g. when 'background' is set to "dark"). Alternatively, options ending with
+`_light` work only when you are using light background colorscheme
+(e.g. when 'background' is set to "light").
+
+------------------------------------------------------------------------------
+						*g:conoline_color_normal_dark*
+This option defines colors of the cursor line in Normal mode, when
+'background' is set to "dark".
+
+  Type: String
+  Default: "guibg=#1818181"
+  Example: >
+	let g:conoline_color_normal_dark = "guifg=white guibg=black gui=bold"
+<
+This is equivalent to: >
+	:highlight CursorLine guifg=white guibg=black gui=bold
+<
+Other variables for terminal colors, |cterm|, |ctermfg|, and |ctermbg| are
+also available.
+
+------------------------------------------------------------------------------
+					*g:conoline_color_normal_nr_dark*
+This option defines colors of the line number in Normal mode, when
+'background' is set to "dark". This option does nothing if you set 'nonumber'
+option.
+
+  Type: String
+  Default: "guibg=#181818"
+  Example: >
+	let g:conoline_color_normal_nr_dark="guifg=white guibg=black gui=bold"
+<
+Other variables for terminal colors, |cterm|, |dtermfg|, and |ctermbg| are
+also available.
+
+------------------------------------------------------------------------------
+					*g:conoline_color_insert_dark*
+					*g:conoline_color_insert_nr_dark*
+Similar to the above options, these options define the colors of the cursor
+line and its line number. But work only in Insert mode.
+
+  Type: String
+  Default: "guifg=#000000" (for both)
+
+------------------------------------------------------------------------------
+					*g:conoline_color_normal_light*
+					*g:conoline_color_normal_nr_light*
+					*g:conoline_color_insert_light*
+					*g:conoline_color_insert_nr_light*
+These options define colors of the cursor line and the line number in normal
+and Insert mode, only when 'background' is set to "light".
+
+  Type: String
+  Default (for Normal mode): "guibg=#eaeaea"
+  Default (for Insert mode): "guibg=#ffffff"
+
+------------------------------------------------------------------------------
+						*g:conoline_colorscheme_normal*
+When this option is set to 1, colors defined by |CursorLine| in your
+colorscheme are used in Normal mode, the following options are ignored:
+	|g:conoline_color_normal_dark|
+	|g:conoline_color_normal_nr_dark|
+	|g:conoline_color_normal_light|
+	|g:conoline_color_normal_nr_light|
+
+  Type: Integer (0 or 1)
+  Default: 0
+
+						*g:conoline_colorscheme_insert*
+When this option is set to 1, colors defined by |CursorLine| in your
+colorscheme are used in Insert mode, and the following options are ignored:
+	|g:conoline_color_insert_dark|
+	|g:conoline_color_insert_nr_dark|
+	|g:conoline_color_insert_light|
+	|g:conoline_color_insert_nr_light|
+
+  Type: Integer (0 or 1)
+  Default: 0
+
+
+==============================================================================
+5. CHANGELOG						*conoline-changelog*
+
+  0.1
+    First public version.
+
+vim:tw=78:sw=8:ts=8:ft=help:norl:noet:

@@ -1,0 +1,5 @@
+*.sqp
+.hg/
+.hgignore
+.directory
+
