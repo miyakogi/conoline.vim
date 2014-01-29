@@ -1,10 +1,10 @@
 Conoline.vim
 ============
 
-This plugin highlights the line of the cursor, only in the current window. The colors change according to the mode (normal/insert). Colors in each mode can be independently customizable.
+This plugin highlights the line of the cursor, only in the current window. The colors change according to the mode (normal/insert). Colors in each mode are independently customizable.
 
 This plugin is inspired by this post:  
-(http://vimblog.hatenablog.com/entry/vimrc_autocmd)
+(http://vimblog.hatenablog.com/entry/vimrc_autocmd_examples)
 
 Screencasts
 ------------
@@ -107,4 +107,27 @@ If you want to use the color set by the colorscheme in insert mode, use the foll
 
 ```vim
 let g:conoline_use_colorscheme_default_insert=1
+```
+
+
+### Default values
+
+```vim
+
+" For dark colorschemes
+let g:conoline_color_normal_dark = "guibg=#181818"
+let g:conoline_color_normal_nr_dark = "guibg=#181818"
+let g:conoline_color_insert_dark = "guibg=#000000"
+let g:conoline_color_insert_nr_dark = "guibg=#000000"
+
+" For light colorschemes
+let g:conoline_color_normal_light = "guibg=#eaeaea"
+let g:conoline_color_normal_nr_light = "guibg=#eaeaea"
+let g:conoline_color_insert_light = "guibg=#ffffff"
+let g:conoline_color_insert_nr_light = "guibg=#ffffff"
+
+" Use colors defined by colorscheme in normal mode.
+" let g:conoline_use_colorscheme_default_normal = 0
+" Use colors defined by colorscheme in insert mode.
+" let g:conoline_use_colorscheme_default_insert = 0
 ```
