@@ -41,7 +41,7 @@ Features:~
   Toggle on and off the highlight.
 
 ==============================================================================
-3. USAGE						*conoline-options*
+3. USAGE						*conoline-usage*
 
 Enable manually:
 	Execute `:ConoLineEnable` manually.
