@@ -24,6 +24,9 @@ function! conoline#disable()
 	augroup conoline_color_insert
 		autocmd!
 	augroup END
+	augroup conoline_color_enable
+		autocmd!
+	augroup END
 	let g:conoline_coloring = 0
 endfunction
 
