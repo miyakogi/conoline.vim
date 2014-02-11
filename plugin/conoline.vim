@@ -1,9 +1,9 @@
 " ======== Cursor line  ========
 
-if exists("g:loaded_cursor_line")
+if exists("g:loaded_conoline")
 	finish
 endif
-let g:loaded_cursor_line = 1
+let g:loaded_conoline = 1
 
 let s:save_cpo = &cpo
 set cpo&vim

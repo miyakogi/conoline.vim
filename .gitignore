@@ -1,5 +1,6 @@
-*.sqp
+*.swp
 .hg/
 .hgignore
 .directory
+.hgtags
 
