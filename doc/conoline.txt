@@ -48,7 +48,7 @@ Enable manually:
 
 Enable automatically:
 	Add the below line in your vimrc and then restart vim. >
-	autocmd VimEnter * ConoLineEnable
+	let g:conoline_auto_enable = 1
 <
 
 ==============================================================================
@@ -58,6 +58,17 @@ Options ending with `_dark` work only when you are using dark colorscheme
 (e.g. when 'background' is set to "dark"). Alternatively, options ending with
 `_light` work only when you are using light background colorscheme
 (e.g. when 'background' is set to "light").
+
+------------------------------------------------------------------------------
+						*g:conoline_auto_enable*
+If this option is set to 1 in your vimrc, cursorline is automatically colored
+at vim's startup.
+
+  Type: Number
+  Default: 0
+  Example: >
+	let g:conoline_auto_enable = 1
+<
 
 ------------------------------------------------------------------------------
 						*g:conoline_color_normal_dark*
@@ -136,6 +147,9 @@ colorscheme are used in Insert mode, and the following options are ignored:
 
 ==============================================================================
 5. CHANGELOG						*conoline-changelog*
+
+  0.2
+    Add |g:conoline_auto_enable| option.
 
   0.1
     First public version.

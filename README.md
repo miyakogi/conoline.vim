@@ -56,7 +56,7 @@ Configuration
 If you want to automatically enable this plugin, add the below line in your vimrc.
 
 ```vim
-autocmd VimEnter * ConoLineEnable
+let g:conoline_auto_enable = 1
 ```
 
 ### Colors
