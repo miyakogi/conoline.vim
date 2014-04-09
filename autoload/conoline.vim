@@ -18,14 +18,9 @@ endfunction
 
 function! conoline#disable()
 	setlocal nocursorline
-	augroup conoline_only_active_window
-		autocmd!
-	augroup END
-	augroup conoline_color_insert
-		autocmd!
-	augroup END
-	augroup conoline_color_enable
-		autocmd!
+	augroup conoline_only_active_window | autocmd!
+	augroup conoline_color_insert | autocmd!
+	augroup conoline_color_enable | autocmd!
 	augroup END
 	let g:conoline_coloring = 0
 endfunction
