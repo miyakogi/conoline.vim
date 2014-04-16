@@ -1,18 +1,18 @@
-function! conoline#insert()
+function! s:insert()
 	highlight! def link CursorLine CursorLineInsert
 	highlight! def link CursorLineNr CursorLineInsertNr
 endfunction
 
-function! conoline#normal()
+function! s:normal()
 	highlight! def link CursorLine CursorLineNormal
 	highlight! def link CursorLineNr CursorLineNormalNr
 endfunction
 
-function! conoline#winenter()
+function! s:winenter()
 	setlocal cursorline
 endfunction
 
-function! conoline#winleave()
+function! s:winleave()
 	setlocal nocursorline
 endfunction
 
@@ -25,7 +25,7 @@ function! conoline#disable()
 	let g:conoline_coloring = 0
 endfunction
 
-function! conoline#setcolors()
+function! s:setcolors()
 	" TODO: Refactor this function.
 	if &background == "light"
 		if !exists("g:conoline_color_insert_light")
@@ -68,7 +68,7 @@ function! conoline#enable()
 	if !exists("g:conoline_coloring")
 		let g:conoline_coloring = 1
 	endif
-	call conoline#setcolors()
+	call s:setcolors()
 	" Set highlight according to options.
 	if exists("g:conoline_use_colorscheme_default_normal") && g:conoline_use_colorscheme_default_normal == 1
 		" NOTE: I wonder why this loop works as I expected...
@@ -88,14 +88,14 @@ function! conoline#enable()
 	" Highlights cursor line enter current window and clear when leave
 	augroup conoline_only_active_window
 		autocmd!
-		autocmd WinEnter,BufEnter * call conoline#winenter()
-		autocmd WinLeave,BufLeave * call conoline#winleave()
+		autocmd WinEnter,BufEnter * call s:winenter()
+		autocmd WinLeave,BufLeave * call s:winleave()
 	augroup END
 	" Change cursor line color when enter/leave insert mode.
 	augroup conoline_color_insert
 		autocmd!
-		autocmd InsertEnter * call conoline#insert()
-		autocmd InsertLeave * call conoline#normal()
+		autocmd InsertEnter * call s:insert()
+		autocmd InsertLeave * call s:normal()
 	augroup END
 	" Enable again when highlight is cleared.
 	augroup conoline_color_enable
@@ -104,7 +104,7 @@ function! conoline#enable()
 	augroup END
 
 	setlocal cursorline
-	call conoline#normal()
+	call s:normal()
 	let g:conoline_coloring = 1
 endfunction
 
