@@ -1,5 +1,3 @@
-" ======== Cursor line  ========
-
 if exists("g:loaded_conoline")
 	finish
 endif
