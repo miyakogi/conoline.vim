@@ -21,7 +21,7 @@ function! conoline#disable()
 	autocmd! conoline_only_active_window
 	autocmd! conoline_color_insert
 	autocmd! conoline_color_enable
-	let g:conoline_coloring = 0
+	let s:coloring = 0
 endfunction
 
 function! s:setcolors()
@@ -39,10 +39,10 @@ function! s:setcolors()
 		if !exists("g:conoline_color_normal_nr_light")
 			let g:conoline_color_normal_nr_light = "guibg=#eaeaea ctermbg=255"
 		endif
-		let g:conoline_color_insert = g:conoline_color_insert_light
-		let g:conoline_color_insert_nr = g:conoline_color_insert_nr_light
-		let g:conoline_color_normal = g:conoline_color_normal_light
-		let g:conoline_color_normal_nr = g:conoline_color_normal_nr_light
+		let s:color_insert = g:conoline_color_insert_light
+		let s:color_insert_nr = g:conoline_color_insert_nr_light
+		let s:color_normal = g:conoline_color_normal_light
+		let s:color_normal_nr = g:conoline_color_normal_nr_light
 	else
 		if !exists("g:conoline_color_insert_dark")
 			let g:conoline_color_insert_dark = "guibg=#000000 ctermbg=232"
@@ -56,16 +56,16 @@ function! s:setcolors()
 		if !exists("g:conoline_color_normal_nr_dark")
 			let g:conoline_color_normal_nr_dark = "guibg=#181818 ctermbg=234"
 		endif
-		let g:conoline_color_insert = g:conoline_color_insert_dark
-		let g:conoline_color_insert_nr = g:conoline_color_insert_nr_dark
-		let g:conoline_color_normal = g:conoline_color_normal_dark
-		let g:conoline_color_normal_nr = g:conoline_color_normal_nr_dark
+		let s:color_insert = g:conoline_color_insert_dark
+		let s:color_insert_nr = g:conoline_color_insert_nr_dark
+		let s:color_normal = g:conoline_color_normal_dark
+		let s:color_normal_nr = g:conoline_color_normal_nr_dark
 	endif
 endfunction
 
 function! conoline#enable()
-	if !exists("g:conoline_coloring")
-		let g:conoline_coloring = 1
+	if !exists("s:coloring")
+		let s:coloring = 1
 	endif
 	call s:setcolors()
 	" Set highlight according to options.
@@ -74,15 +74,15 @@ function! conoline#enable()
 		highlight! def link CursorLineNormal CursorLine
 		highlight! def link CursorLineNormalNr CursorLineNr
 	else
-		exec 'highlight! CursorLineNormal ' . g:conoline_color_normal
-		exec 'highlight! CursorLineNormalNr ' . g:conoline_color_normal_nr
+		exec 'highlight! CursorLineNormal ' . s:color_normal
+		exec 'highlight! CursorLineNormalNr ' . s:color_normal_nr
 	endif
 	if exists("g:conoline_use_colorscheme_default_insert") && g:conoline_use_colorscheme_default_insert == 1
 		highlight! def link CursorLineInsert CursorLine
 		highlight! def link CursorLineInsertNr CursorLineNr
 	else
-		exec 'highlight! CursorLineInsert ' . g:conoline_color_insert
-		exec 'highlight! CursorLineInsertNr ' . g:conoline_color_insert_nr
+		exec 'highlight! CursorLineInsert ' . s:color_insert
+		exec 'highlight! CursorLineInsertNr ' . s:color_insert_nr
 	endif
 	" Highlights cursor line enter current window and clear when leave
 	augroup conoline_only_active_window
@@ -104,22 +104,22 @@ function! conoline#enable()
 
 	setlocal cursorline
 	call s:normal()
-	let g:conoline_coloring = 1
+	let s:coloring = 1
 endfunction
 
 function! conoline#toggle()
-	if !exists("g:conoline_coloring")
-		let g:conoline_coloring = 1
+	if !exists("s:coloring")
+		let s:coloring = 1
 	endif
-	if g:conoline_coloring == 1
+	if s:coloring == 1
 		call conoline#disable()
-	elseif g:conoline_coloring == 0
+	elseif s:coloring == 0
 		call conoline#enable()
 	endif
 endfunction
 
 function! conoline#status()
-	if exists('g:conoline_coloring') && g:conoline_coloring ==1
+	if exists('s:coloring') && s:coloring ==1
 		return 1
 	else
 		return 0
