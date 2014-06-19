@@ -117,3 +117,11 @@ function! conoline#toggle()
 		call conoline#enable()
 	endif
 endfunction
+
+function! conoline#status()
+	if exists('g:conoline_coloring') && g:conoline_coloring ==1
+		return 1
+	else
+		return 0
+	endif
+endfunction
