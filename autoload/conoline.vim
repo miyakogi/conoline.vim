@@ -28,16 +28,16 @@ function! s:setcolors()
 	" TODO: Refactor this function.
 	if &background == "light"
 		if !exists("g:conoline_color_insert_light")
-			let g:conoline_color_insert_light = "guibg=#ffffff"
+			let g:conoline_color_insert_light = "guibg=#ffffff ctermbg=15"
 		endif
 		if !exists("g:conoline_color_insert_nr_light")
-			let g:conoline_color_insert_nr_light = "guibg=#ffffff"
+			let g:conoline_color_insert_nr_light = "guibg=#ffffff ctermbg=15"
 		endif
 		if !exists("g:conoline_color_normal_light")
-			let g:conoline_color_normal_light = "guibg=#eaeaea"
+			let g:conoline_color_normal_light = "guibg=#eaeaea ctermbg=255"
 		endif
 		if !exists("g:conoline_color_normal_nr_light")
-			let g:conoline_color_normal_nr_light = "guibg=#eaeaea"
+			let g:conoline_color_normal_nr_light = "guibg=#eaeaea ctermbg=255"
 		endif
 		let g:conoline_color_insert = g:conoline_color_insert_light
 		let g:conoline_color_insert_nr = g:conoline_color_insert_nr_light
@@ -45,16 +45,16 @@ function! s:setcolors()
 		let g:conoline_color_normal_nr = g:conoline_color_normal_nr_light
 	else
 		if !exists("g:conoline_color_insert_dark")
-			let g:conoline_color_insert_dark = "guibg=#000000"
+			let g:conoline_color_insert_dark = "guibg=#000000 ctermbg=232"
 		endif
 		if !exists("g:conoline_color_insert_nr_dark")
-			let g:conoline_color_insert_nr_dark = "guibg=#000000"
+			let g:conoline_color_insert_nr_dark = "guibg=#000000 ctermbg=232"
 		endif
 		if !exists("g:conoline_color_normal_dark")
-			let g:conoline_color_normal_dark = "guibg=#181818"
+			let g:conoline_color_normal_dark = "guibg=#181818 ctermbg=234"
 		endif
 		if !exists("g:conoline_color_normal_nr_dark")
-			let g:conoline_color_normal_nr_dark = "guibg=#181818"
+			let g:conoline_color_normal_nr_dark = "guibg=#181818 ctermbg=234"
 		endif
 		let g:conoline_color_insert = g:conoline_color_insert_dark
 		let g:conoline_color_insert_nr = g:conoline_color_insert_nr_dark
