@@ -120,8 +120,9 @@ endfunction
 
 function! conoline#toggle()
   if !exists("s:coloring")
-    let s:coloring = 1
+    let s:coloring = 0
   endif
+
   if s:coloring == 1
     call conoline#disable()
   elseif s:coloring == 0
