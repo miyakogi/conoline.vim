@@ -72,7 +72,9 @@ function! conoline#enable()
   if !exists("s:coloring")
     let s:coloring = 1
   endif
+
   call s:setcolors()
+
   " Set highlight according to options.
   if exists("g:conoline_use_colorscheme_default_normal") && g:conoline_use_colorscheme_default_normal == 1
     " NOTE: I wonder why this loop works as I expected...
@@ -82,6 +84,7 @@ function! conoline#enable()
     exec 'highlight! CursorLineNormal ' . s:color_normal
     exec 'highlight! CursorLineNormalNr ' . s:color_normal_nr
   endif
+
   if exists("g:conoline_use_colorscheme_default_insert") && g:conoline_use_colorscheme_default_insert == 1
     highlight! def link CursorLineInsert CursorLine
     highlight! def link CursorLineInsertNr CursorLineNr
@@ -89,18 +92,21 @@ function! conoline#enable()
     exec 'highlight! CursorLineInsert ' . s:color_insert
     exec 'highlight! CursorLineInsertNr ' . s:color_insert_nr
   endif
+
   " Highlights cursor line enter current window and clear when leave
   augroup conoline_only_active_window
     autocmd!
     autocmd WinEnter,BufEnter * call s:winenter()
     autocmd WinLeave,BufLeave * call s:winleave()
   augroup END
+
   " Change cursor line color when enter/leave insert mode.
   augroup conoline_color_insert
     autocmd!
     autocmd InsertEnter * call s:insert()
     autocmd InsertLeave * call s:normal()
   augroup END
+
   " Enable again when highlight is cleared.
   augroup conoline_color_enable
     autocmd!
