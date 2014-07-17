@@ -13,7 +13,9 @@ command! ConoLineDisable call conoline#disable()
 command! ConoLineToggle call conoline#toggle()
 
 if exists("g:conoline_auto_enable") && g:conoline_auto_enable == 1
-  autocmd VimEnter * call conoline#enable()
+  augroup conoline_vimenter
+    autocmd VimEnter * call conoline#enable()
+  augroup END
 endif
 
 let &cpo = s:save_cpo
