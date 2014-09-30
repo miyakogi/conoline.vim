@@ -26,71 +26,35 @@ function! conoline#disable()
   autocmd! conoline_only_active_window
   autocmd! conoline_color_insert
   autocmd! conoline_color_enable
-  let s:coloring = 0
-endfunction
-
-function! s:setcolors()
-  " TODO: Refactor this function.
-  if &background == "light"
-    if !exists("g:conoline_color_insert_light")
-      let g:conoline_color_insert_light = "guibg=#ffffff ctermbg=15"
-    endif
-    if !exists("g:conoline_color_insert_nr_light")
-      let g:conoline_color_insert_nr_light = "guibg=#ffffff ctermbg=15"
-    endif
-    if !exists("g:conoline_color_normal_light")
-      let g:conoline_color_normal_light = "guibg=#eaeaea ctermbg=255"
-    endif
-    if !exists("g:conoline_color_normal_nr_light")
-      let g:conoline_color_normal_nr_light = "guibg=#eaeaea ctermbg=255"
-    endif
-    let s:color_insert = g:conoline_color_insert_light
-    let s:color_insert_nr = g:conoline_color_insert_nr_light
-    let s:color_normal = g:conoline_color_normal_light
-    let s:color_normal_nr = g:conoline_color_normal_nr_light
-  else
-    if !exists("g:conoline_color_insert_dark")
-      let g:conoline_color_insert_dark = "guibg=#000000 ctermbg=232"
-    endif
-    if !exists("g:conoline_color_insert_nr_dark")
-      let g:conoline_color_insert_nr_dark = "guibg=#000000 ctermbg=232"
-    endif
-    if !exists("g:conoline_color_normal_dark")
-      let g:conoline_color_normal_dark = "guibg=#181818 ctermbg=234"
-    endif
-    if !exists("g:conoline_color_normal_nr_dark")
-      let g:conoline_color_normal_nr_dark = "guibg=#181818 ctermbg=234"
-    endif
-    let s:color_insert = g:conoline_color_insert_dark
-    let s:color_insert_nr = g:conoline_color_insert_nr_dark
-    let s:color_normal = g:conoline_color_normal_dark
-    let s:color_normal_nr = g:conoline_color_normal_nr_dark
-  endif
+  let s:enabled = 0
 endfunction
 
 function! conoline#enable()
-  if !exists("s:coloring")
-    let s:coloring = 1
+  if !exists("s:enabled")
+    let s:enabled = 0
   endif
 
-  call s:setcolors()
+  if &background ==# 'light'
+    let bg = 'light'
+  else
+    let bg = 'dark'
+  endif
 
   " Set highlight according to options.
-  if exists("g:conoline_use_colorscheme_default_normal") && g:conoline_use_colorscheme_default_normal == 1
-    " NOTE: I wonder why this loop works as I expected...
+  if g:conoline_use_colorscheme_default_normal
     highlight! def link CursorLineNormal CursorLine
     highlight! def link CursorLineNormalNr CursorLineNr
   else
-    exec 'highlight! CursorLineNormal ' . s:color_normal
-    exec 'highlight! CursorLineNormalNr ' . s:color_normal_nr
+    execute "execute 'highlight! CursorLineNormal ' . g:conoline_color_normal_" . bg
+    execute "execute 'highlight! CursorLineNormalNr ' . g:conoline_color_normal_nr_" . bg
   endif
 
-  if exists("g:conoline_use_colorscheme_default_insert") && g:conoline_use_colorscheme_default_insert == 1
+  if g:conoline_use_colorscheme_default_insert
     highlight! def link CursorLineInsert CursorLine
     highlight! def link CursorLineInsertNr CursorLineNr
   else
-    exec 'highlight! CursorLineInsert ' . s:color_insert
-    exec 'highlight! CursorLineInsertNr ' . s:color_insert_nr
+    execute "execute 'highlight! CursorLineInsert ' . g:conoline_color_insert_" . bg
+    execute "execute 'highlight! CursorLineInsertNr ' . g:conoline_color_insert_nr_" . bg
   endif
 
   " Highlights cursor line enter current window and clear when leave
@@ -115,23 +79,23 @@ function! conoline#enable()
 
   setlocal cursorline
   call s:normal()
-  let s:coloring = 1
+  let s:enabled = 1
 endfunction
 
 function! conoline#toggle()
-  if !exists("s:coloring")
-    let s:coloring = 0
+  if !exists("s:enabled")
+    let s:enabled = 0
   endif
 
-  if s:coloring == 1
+  if s:enabled == 1
     call conoline#disable()
-  elseif s:coloring == 0
+  elseif s:enabled == 0
     call conoline#enable()
   endif
 endfunction
 
 function! conoline#status()
-  if exists('s:coloring') && s:coloring ==1
+  if exists('s:enabled') && s:enabled ==1
     return 1
   else
     return 0
