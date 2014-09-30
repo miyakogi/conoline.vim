@@ -4,13 +4,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! s:insert()
-  highlight! def link CursorLine CursorLineInsert
-  highlight! def link CursorLineNr CursorLineInsertNr
+  highlight! def link CursorLine ConoLineInsert
+  highlight! def link CursorLineNr ConoLineInsertNr
 endfunction
 
 function! s:normal()
-  highlight! def link CursorLine CursorLineNormal
-  highlight! def link CursorLineNr CursorLineNormalNr
+  highlight! def link CursorLine ConoLineNormal
+  highlight! def link CursorLineNr ConoLineNormalNr
 endfunction
 
 function! s:winenter()
@@ -42,19 +42,19 @@ function! conoline#enable()
 
   " Set highlight according to options.
   if g:conoline_use_colorscheme_default_normal
-    highlight! def link CursorLineNormal CursorLine
-    highlight! def link CursorLineNormalNr CursorLineNr
+    highlight! def link ConoLineNormal CursorLine
+    highlight! def link ConoLineNormalNr CursorLineNr
   else
-    execute "execute 'highlight! CursorLineNormal ' . g:conoline_color_normal_" . bg
-    execute "execute 'highlight! CursorLineNormalNr ' . g:conoline_color_normal_nr_" . bg
+    execute "execute 'highlight! ConoLineNormal ' . g:conoline_color_normal_" . bg
+    execute "execute 'highlight! ConoLineNormalNr ' . g:conoline_color_normal_nr_" . bg
   endif
 
   if g:conoline_use_colorscheme_default_insert
-    highlight! def link CursorLineInsert CursorLine
-    highlight! def link CursorLineInsertNr CursorLineNr
+    highlight! def link ConoLineInsert CursorLine
+    highlight! def link ConoLineInsertNr CursorLineNr
   else
-    execute "execute 'highlight! CursorLineInsert ' . g:conoline_color_insert_" . bg
-    execute "execute 'highlight! CursorLineInsertNr ' . g:conoline_color_insert_nr_" . bg
+    execute "execute 'highlight! ConoLineInsert ' . g:conoline_color_insert_" . bg
+    execute "execute 'highlight! ConoLineInsertNr ' . g:conoline_color_insert_nr_" . bg
   endif
 
   " Highlights cursor line enter current window and clear when leave
