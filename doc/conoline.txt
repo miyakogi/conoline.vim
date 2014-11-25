@@ -40,6 +40,12 @@ Features:~
 :ConoLineToggle						*:ConoLineToggle*
   Toggle on and off the highlight.
 
+:ConoLineColorDark					*:ConoLineColorDark*
+  Change color of the cursorline dark (use g:conoline_color_*_dark).
+
+:ConoLineColorLight					*:ConoLineColorLight*
+  Change color of the cursorline light (use g:conoline_color_*_light).
+
 ==============================================================================
 3. USAGE						*conoline-usage*
 
@@ -147,6 +153,9 @@ colorscheme are used in Insert mode, and the following options are ignored:
 
 ==============================================================================
 5. CHANGELOG						*conoline-changelog*
+
+  0.3
+    Add |:ConoLineColorDark| and |:ConoLineColorLight| commands.
 
   0.2
     Add |g:conoline_auto_enable| option.

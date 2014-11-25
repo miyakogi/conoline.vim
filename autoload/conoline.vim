@@ -29,15 +29,9 @@ function! conoline#disable()
   let s:enabled = 0
 endfunction
 
-function! conoline#enable()
-  if !exists("s:enabled")
-    let s:enabled = 0
-  endif
-
-  if &background ==# 'light'
-    let bg = 'light'
-  else
-    let bg = 'dark'
+function! conoline#set_hl(bg)
+  if a:bg !=# 'light' && a:bg !=# 'dark'
+    return
   endif
 
   " Set highlight according to options.
@@ -45,17 +39,28 @@ function! conoline#enable()
     highlight! def link ConoLineNormal CursorLine
     highlight! def link ConoLineNormalNr CursorLineNr
   else
-    execute "execute 'highlight! ConoLineNormal ' . g:conoline_color_normal_" . bg
-    execute "execute 'highlight! ConoLineNormalNr ' . g:conoline_color_normal_nr_" . bg
+    execute 'highlight! ConoLineNormal ' . g:conoline_color_normal_{a:bg}
+    execute 'highlight! ConoLineNormalNr ' . g:conoline_color_normal_nr_{a:bg}
   endif
 
   if g:conoline_use_colorscheme_default_insert
     highlight! def link ConoLineInsert CursorLine
     highlight! def link ConoLineInsertNr CursorLineNr
   else
-    execute "execute 'highlight! ConoLineInsert ' . g:conoline_color_insert_" . bg
-    execute "execute 'highlight! ConoLineInsertNr ' . g:conoline_color_insert_nr_" . bg
+    execute 'highlight! ConoLineInsert ' . g:conoline_color_insert_{a:bg}
+    execute 'highlight! ConoLineInsertNr ' . g:conoline_color_insert_nr_{a:bg}
   endif
+
+  let s:current_bg = a:bg
+endfunction
+
+function! conoline#enable() abort
+  if !exists("s:enabled")
+    let s:enabled = 0
+  endif
+
+  let bg = get(s:, 'current_bg', &background)
+  call conoline#set_hl(bg)
 
   " Highlights cursor line enter current window and clear when leave
   augroup conoline_only_active_window
@@ -71,7 +76,7 @@ function! conoline#enable()
     autocmd InsertLeave * call s:normal()
   augroup END
 
-  " Enable again when highlight is cleared.
+  " Enable again when colorscheme is changed.
   augroup conoline_color_enable
     autocmd!
     autocmd Syntax,ColorScheme * call conoline#enable()

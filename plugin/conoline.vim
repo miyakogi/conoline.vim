@@ -53,6 +53,8 @@ endif
 command! ConoLineEnable call conoline#enable()
 command! ConoLineDisable call conoline#disable()
 command! ConoLineToggle call conoline#toggle()
+command! ConoLineColorLight call conoline#set_hl('light')
+command! ConoLineColorDark call conoline#set_hl('dark')
 "}}}
 
 " ======== Auto Commands ========"{{{
