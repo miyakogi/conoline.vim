@@ -84,7 +84,7 @@ This option defines colors of the cursor line in Normal mode, when
   Type: String
   Default: "guibg=#1818181"
   Example: >
-	let g:conoline_color_normal_dark = "guifg=white guibg=black gui=bold"
+	let g:conoline_color_normal_dark = 'guifg=white guibg=black gui=bold'
 <
 This is equivalent to: >
 	:highlight CursorLine guifg=white guibg=black gui=bold
@@ -101,7 +101,7 @@ option.
   Type: String
   Default: "guibg=#181818"
   Example: >
-	let g:conoline_color_normal_nr_dark="guifg=white guibg=black gui=bold"
+	let g:conoline_color_normal_nr_dark='guifg=white guibg=black gui=bold'
 <
 Other variables for terminal colors, |cterm|, |dtermfg|, and |ctermbg| are
 also available.

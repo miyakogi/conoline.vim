@@ -55,7 +55,7 @@ function! conoline#set_hl(bg) abort
 endfunction
 
 function! conoline#enable() abort
-  if !exists("s:enabled")
+  if !exists('s:enabled')
     let s:enabled = 0
   endif
 
@@ -88,7 +88,7 @@ function! conoline#enable() abort
 endfunction
 
 function! conoline#toggle() abort
-  if !exists("s:enabled")
+  if !exists('s:enabled')
     let s:enabled = 0
   endif
 

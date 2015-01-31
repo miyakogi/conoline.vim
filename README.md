@@ -75,18 +75,18 @@ Please see the following examples. You can use the same syntax as used in colors
 When you set 'backround=dark'
 
 ```vim
-let g:conoline_color_normal_dark = "guibg=#333333 guifg=#dddddd"
-let g:conoline_color_insert_dark = "guibg=black guifg=white"
+let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd'
+let g:conoline_color_insert_dark = 'guibg=black guifg=white'
 If you set 'background=light', change the suffix from 'dark' to 'light'.
 ```
 
 Of course, you can set colors used in terminals.
 
 ```vim
-let g:conoline_color_normal_dark = "guibg=#333333 guifg=#dddddd gui=None "
-                           \. "ctermbg=grey ctermfg=white"
-let g:conoline_color_insert_dark = "guibg=black guifg=white gui=bold "
-                           \. "ctermbg=black ctermfg=white"
+let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+                           \. 'ctermbg=grey ctermfg=white'
+let g:conoline_color_insert_dark = 'guibg=black guifg=white gui=bold '
+                           \. 'ctermbg=black ctermfg=white'
 ```
 
 If you are using light theme (`set background=light`), please change suffix from `_dark` to `_light`.
@@ -115,16 +115,16 @@ let g:conoline_use_colorscheme_default_insert=1
 ```vim
 
 " For dark colorschemes
-let g:conoline_color_normal_dark = "guibg=#181818"
-let g:conoline_color_normal_nr_dark = "guibg=#181818"
-let g:conoline_color_insert_dark = "guibg=#000000"
-let g:conoline_color_insert_nr_dark = "guibg=#000000"
+let g:conoline_color_normal_dark = 'guibg=#181818'
+let g:conoline_color_normal_nr_dark = 'guibg=#181818'
+let g:conoline_color_insert_dark = 'guibg=#000000'
+let g:conoline_color_insert_nr_dark = 'guibg=#000000'
 
 " For light colorschemes
-let g:conoline_color_normal_light = "guibg=#eaeaea"
-let g:conoline_color_normal_nr_light = "guibg=#eaeaea"
-let g:conoline_color_insert_light = "guibg=#ffffff"
-let g:conoline_color_insert_nr_light = "guibg=#ffffff"
+let g:conoline_color_normal_light = 'guibg=#eaeaea'
+let g:conoline_color_normal_nr_light = 'guibg=#eaeaea'
+let g:conoline_color_insert_light = 'guibg=#ffffff'
+let g:conoline_color_insert_nr_light = 'guibg=#ffffff'
 
 " Use colors defined by colorscheme in normal mode.
 " let g:conoline_use_colorscheme_default_normal = 0
