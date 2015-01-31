@@ -3,25 +3,25 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! s:insert()
+function! s:insert() abort
   highlight! def link CursorLine ConoLineInsert
   highlight! def link CursorLineNr ConoLineInsertNr
 endfunction
 
-function! s:normal()
+function! s:normal() abort
   highlight! def link CursorLine ConoLineNormal
   highlight! def link CursorLineNr ConoLineNormalNr
 endfunction
 
-function! s:winenter()
+function! s:winenter() abort
   setlocal cursorline
 endfunction
 
-function! s:winleave()
+function! s:winleave() abort
   setlocal nocursorline
 endfunction
 
-function! conoline#disable()
+function! conoline#disable() abort
   setlocal nocursorline
   autocmd! conoline_only_active_window
   autocmd! conoline_color_insert
@@ -29,7 +29,7 @@ function! conoline#disable()
   let s:enabled = 0
 endfunction
 
-function! conoline#set_hl(bg)
+function! conoline#set_hl(bg) abort
   if a:bg !=# 'light' && a:bg !=# 'dark'
     return
   endif
@@ -87,7 +87,7 @@ function! conoline#enable() abort
   let s:enabled = 1
 endfunction
 
-function! conoline#toggle()
+function! conoline#toggle() abort
   if !exists("s:enabled")
     let s:enabled = 0
   endif
@@ -99,7 +99,7 @@ function! conoline#toggle()
   endif
 endfunction
 
-function! conoline#status()
+function! conoline#status() abort
   if exists('s:enabled') && s:enabled ==1
     return 1
   else
