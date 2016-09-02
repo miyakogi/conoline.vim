@@ -26,6 +26,7 @@ function! conoline#disable() abort
   autocmd! conoline_only_active_window
   autocmd! conoline_color_insert
   autocmd! conoline_color_enable
+  autocmd! conoline_monitor_background_setting
   let s:enabled = 0
 endfunction
 
@@ -80,6 +81,12 @@ function! conoline#enable() abort
   augroup conoline_color_enable
     autocmd!
     autocmd Syntax,ColorScheme * call conoline#enable()
+  augroup END
+
+  " Change light/dark when the background changes
+  augroup conoline_monitor_background_setting
+    autocmd!
+    autocmd OptionSet background :if &background == 'light' | execute "ConoLineColorLight" | else | execute "ConoLineColorDark" | endif
   augroup END
 
   setlocal cursorline
