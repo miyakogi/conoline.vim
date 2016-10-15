@@ -5,11 +5,13 @@ set cpo&vim
 
 function! s:insert() abort
   highlight! def link CursorLine ConoLineInsert
+  highlight! def link CursorColumn ConoLineInsert
   highlight! def link CursorLineNr ConoLineInsertNr
 endfunction
 
 function! s:normal() abort
   highlight! def link CursorLine ConoLineNormal
+  highlight! def link CursorColumn ConoLineNormal
   highlight! def link CursorLineNr ConoLineNormalNr
 endfunction
 
